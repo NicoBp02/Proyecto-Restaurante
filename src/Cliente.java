@@ -8,7 +8,7 @@
  * @author Estudiante
  */
 public class Cliente {
-    private String nombre
+    private String nombre;
     private String telefono;
 
     public Cliente(String nombre, String telefono) {
@@ -21,7 +21,7 @@ public class Cliente {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre
+        this.nombre = nombre;
     }
 
     public String getTelefono() {
