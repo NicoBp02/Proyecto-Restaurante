@@ -17,10 +17,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public void actualizarPrecio(double nuevoPrecio) {
-    }
-
     public double obtenerPrecio() {
         return precio;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }
