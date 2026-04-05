@@ -81,7 +81,7 @@ if (p.getEmpleado() != null) {
 
                         int tiempo = p.calcularTiempoDomicilio();
                         System.out.println("Tiempo estimado: " + tiempo + " minutos");
-
+System.out.println("Cantidad de productos: " + p.getCantidadProductos());
                         // FACTURA Y CAJA
                         Factura factura = new Factura(p.getId(), p);
                         factura.generarTotal();

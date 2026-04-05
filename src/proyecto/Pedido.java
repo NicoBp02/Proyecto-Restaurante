@@ -10,7 +10,9 @@ private Empleado empleado;
     private Cliente cliente;
     private ListaEnlazada<Producto> productos;
     private double total;
-
+public int getCantidadProductos() {
+    return productos.size();
+}
     public Pedido(int id, Cliente cliente,Empleado empleado ) {
         this.id = id;
         this.cliente = cliente; 
