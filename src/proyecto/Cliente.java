@@ -1,3 +1,5 @@
+package proyecto;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -7,21 +9,24 @@
  *
  * @author Estudiante
  */
-public class Producto {
-
+public class Cliente {
     private String nombre;
-    private double precio;
+    private String telefono;
 
-    public Producto(String nombre, double precio) {
+    public Cliente(String nombre, String telefono) {
         this.nombre = nombre;
-        this.precio = precio;
-    }
-
-    public double obtenerPrecio() {
-        return precio;
+        this.telefono = telefono;
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
     }
 }

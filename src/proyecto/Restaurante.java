@@ -1,3 +1,5 @@
+package proyecto;
+
 
 
 import com.murcia.utils.ColaEnlazada;
@@ -23,7 +25,7 @@ public class Restaurante {
     }
 
     public boolean hayPedidos() {
-        return !colaPedidos.estaVacia();
+       return colaPedidos.size() > 0;
     }
 
     public Caja getCaja() {

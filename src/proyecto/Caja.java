@@ -1,3 +1,5 @@
+package proyecto;
+
 
 import com.murcia.utils.ColaEnlazada;
 public class Caja {
@@ -15,7 +17,7 @@ public class Caja {
 
     public void procesarPago() {
 
-        if (!colaFacturas.estaVacia()) {
+            if (colaFacturas.size() > 0) {
 
             Factura f = (Factura) colaFacturas.desencolar();
 
