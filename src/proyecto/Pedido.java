@@ -5,16 +5,17 @@ package proyecto;
 import com.murcia.utils.ListaEnlazada;
 
 public class Pedido {
-
+private Empleado empleado;
     private int id;
     private Cliente cliente;
     private ListaEnlazada<Producto> productos;
     private double total;
 
-    public Pedido(int id, Cliente cliente) {
+    public Pedido(int id, Cliente cliente,Empleado empleado ) {
         this.id = id;
-        this.cliente = cliente;
-        this.productos = new ListaEnlazada<Producto>() {}; // 🔥 SOLUCIÓN
+        this.cliente = cliente; 
+        this.empleado = empleado;
+        this.productos = new ListaEnlazada<Producto>() {}; 
     }
 
     public void agregarProducto(Producto producto) {
@@ -26,7 +27,7 @@ public class Pedido {
 
         for (int i = 0; i < productos.size(); i++) {
             Producto p = productos.get(i);
-            total += p.obtenerPrecio();
+            total += p.obtenerPrecio(); 
         }
     }
 
@@ -44,5 +45,8 @@ public class Pedido {
 
     public Cliente getCliente() {
         return cliente;
+    }
+    public Empleado getEmpleado() {
+        return empleado;
     }
 }

@@ -11,16 +11,20 @@ package proyecto;
  */
 public class Empleado {
        private String nombre;
-    private String cargo;
+    
 
-    public Empleado(String nombre, String cargo) {
+    public Empleado(String nombre) {
         this.nombre = nombre;
-        this.cargo = cargo;
+     
     }
-
+public String getNombre() {
+        return nombre;
+    }
+/*
     public void tomarPedido(Pedido pedido) {
         if (pedido != null) {
             System.out.println("Empleado " + nombre + " tomó el pedido " + pedido.getId());
         }
     }
+*/
 }

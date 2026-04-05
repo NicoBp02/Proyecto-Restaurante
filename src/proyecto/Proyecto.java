@@ -28,14 +28,16 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
             switch (opcion) {
 
                 case 1:
-                    System.out.println("Registrar pedido...");
+                    System.out.println("Registrar pedido...");                                   
+                    String nombreEmp = Input.next("Empleado: ");
+                    Empleado emp = new Empleado(nombreEmp);
                     String nombre = Input.next("Nombre del cliente: ");
                     String telefono = Input.next("Telefono: ");
 
                     Cliente cliente = new Cliente(nombre, telefono);
 
                     int idPedido = Input.nextInt("ID del pedido: ");
-                    Pedido pedido = new Pedido(idPedido, cliente);
+                    Pedido pedido = new Pedido(idPedido, cliente, emp);
 
                     int cantidad = Input.nextInt("Cantidad de productos: ");
 
@@ -60,11 +62,21 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
 
                         Pedido p = restaurante.atenderPedido();
 
+    if (p == null) {
+        System.out.println("Error: no se pudo atender el pedido");
+        break;
+    }
                         p.calcularTotal();
 
                         System.out.println("\n=== PEDIDO ATENDIDO ===");
                         System.out.println("ID: " + p.getId());
                         System.out.println("Cliente: " + p.getCliente().getNombre());
+                  
+if (p.getEmpleado() != null) {
+    System.out.println("Atendido por: " + p.getEmpleado().getNombre());
+} else {
+    System.out.println("Atendido por: No asignado");
+}
                         System.out.println("Total: " + p.obtenerTotal());
 
                         int tiempo = p.calcularTiempoDomicilio();

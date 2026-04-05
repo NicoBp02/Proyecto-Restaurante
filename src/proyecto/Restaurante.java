@@ -1,7 +1,5 @@
 package proyecto;
 
-
-
 import com.murcia.utils.ColaEnlazada;
 
 public class Restaurante {
@@ -15,38 +13,42 @@ public class Restaurante {
         this.colaPedidos = new ColaEnlazada();
         this.caja = new Caja();
     }
-public void mostrarPedidosPendientes() {
 
-    if (colaPedidos.size() == 0) {
-        System.out.println("No hay pedidos pendientes");
-        return;
+    public void mostrarPedidosPendientes() {
+
+        if (colaPedidos.size() == 0) {
+            System.out.println("No hay pedidos pendientes");
+            return;
+        }
+
+        System.out.print("Pedidos pendientes (IDs): ");
+
+        int tamaño = colaPedidos.size();
+
+        for (int i = 0; i < tamaño; i++) {
+
+            Pedido p = (Pedido) colaPedidos.poll();
+            System.out.print(p.getId() + " ");
+            colaPedidos.add(p);
+        }
+
+        System.out.println();
     }
 
-    System.out.print("Pedidos pendientes (IDs): ");
-
-    int tamaño = colaPedidos.size();
-
-    for (int i = 0; i < tamaño; i++) {
-
-        Pedido p = (Pedido) colaPedidos.poll(); // saco
-
-        System.out.print(p.getId() + " ");
-
-        colaPedidos.add(p); // vuelvo a meter
-    }
-
-    System.out.println();
-}
+    
     public void registrarPedido(Pedido pedido) {
-        colaPedidos.encolar(pedido);
+        colaPedidos.add(pedido);
     }
 
     public Pedido atenderPedido() {
-        return (Pedido) colaPedidos.desencolar();
+        if (colaPedidos.size() > 0) {
+            return (Pedido) colaPedidos.poll();
+        }
+        return null;
     }
 
     public boolean hayPedidos() {
-       return colaPedidos.size() > 0;
+        return colaPedidos.size() > 0;
     }
 
     public Caja getCaja() {
