@@ -15,7 +15,28 @@ public class Restaurante {
         this.colaPedidos = new ColaEnlazada();
         this.caja = new Caja();
     }
+public void mostrarPedidosPendientes() {
 
+    if (colaPedidos.size() == 0) {
+        System.out.println("No hay pedidos pendientes");
+        return;
+    }
+
+    System.out.print("Pedidos pendientes (IDs): ");
+
+    int tamaño = colaPedidos.size();
+
+    for (int i = 0; i < tamaño; i++) {
+
+        Pedido p = (Pedido) colaPedidos.poll(); // saco
+
+        System.out.print(p.getId() + " ");
+
+        colaPedidos.add(p); // vuelvo a meter
+    }
+
+    System.out.println();
+}
     public void registrarPedido(Pedido pedido) {
         colaPedidos.encolar(pedido);
     }

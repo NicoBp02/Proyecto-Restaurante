@@ -78,6 +78,8 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
                         restaurante.getCaja().procesarPago();
 
                         System.out.println(" Pago procesado correctamente");
+ //  MOSTRAR LOS QUE FALTAN
+        restaurante.mostrarPedidosPendientes();
 
                     } else {
                         System.out.println(" No hay pedidos en la cola");
