@@ -1,7 +1,5 @@
 package proyecto;
 
-
-
 import com.murcia.utils.ListaEnlazada;
 
 public class Pedido {
