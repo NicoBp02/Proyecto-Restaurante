@@ -12,7 +12,9 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
             System.out.println("1. Registrar pedido");
             System.out.println("2. Atender pedido");
             System.out.println("3. Ver dinero en caja");
-            System.out.println("4. Salir");
+            System.out.println("4. Buscar pedido");
+            System.out.println("5. Atender pedido especifico ");
+            System.out.println("6. Salir");
             
          // Se usa Input de la librería para validar entrada numérica
        opcion = Input.nextInt("Seleccione una opcion: ");
@@ -114,7 +116,44 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
 
                     break;
 
-                case 4:
+                    case 4: //buscar pedido
+                       
+    int idBuscar = Input.nextInt("Ingrese ID del pedido: ");
+    Pedido encontrado = restaurante.buscarPedido(idBuscar);
+                        System.out.println("------------------------");
+    if (encontrado != null) {
+        System.out.println("Pedido encontrado:");
+        System.out.println("Cliente: " + encontrado.getCliente().getNombre());
+        System.out.println("Cantidad productos: " + encontrado.getCantidadProductos());
+    } else {
+        System.out.println("Pedido no encontrado");
+    }
+    break;
+                    
+    case 5: //priorizar y atender pedidos especificos 
+    int idAtender = Input.nextInt("ID del pedido a priorizar: ");
+    Pedido p = restaurante.atenderPedidoEspecifico(idAtender);
+
+    if (p != null) {
+        p.calcularTotal();
+
+        System.out.println("\n=== PEDIDO PRIORITARIO ATENDIDO ===");
+        System.out.println("ID: " + p.getId());
+        System.out.println("Cliente: " + p.getCliente().getNombre());
+        System.out.println("Total: " + p.obtenerTotal());
+
+        Factura factura = new Factura(p.getId(), p);
+        factura.generarTotal();
+
+        restaurante.getCaja().registrarFactura(factura);
+        restaurante.getCaja().procesarPago();
+
+    } else {
+        System.out.println("Pedido no encontrado");
+    }
+    break;
+    
+                case 6:
                     System.out.println("Saliendo...");
                     break;
 
@@ -122,6 +161,6 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
                     System.out.println("Opcion invalida");
             }
 
-        } while (opcion != 4); // Ciclo hasta que el usuario decida salir
+        } while (opcion != 6); // Ciclo hasta que el usuario decida salir
     }
 }
