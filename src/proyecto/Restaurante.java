@@ -34,8 +34,6 @@ public class Restaurante {
 
         System.out.println();
     }
-
-    
     
     public Pedido buscarPedido(int id) {
     if (colaPedidos.size() == 0) return null;
@@ -62,8 +60,6 @@ public class Restaurante {
 
     return encontrado;
 }
-    
-    
     
     
     public Pedido atenderPedidoEspecifico(int id) {
@@ -93,18 +89,42 @@ public class Restaurante {
 }
     
     
-    
-    
     public void registrarPedido(Pedido pedido) {
         colaPedidos.add(pedido);
     }
 
-    public Pedido atenderPedido() {
-        if (colaPedidos.size() > 0) {
-            return (Pedido) colaPedidos.poll();
+   public Pedido atenderPedido() {
+    if (colaPedidos.size() == 0) return null;
+
+    ColaEnlazada aux = new ColaEnlazada();
+    Pedido vip = null;
+
+    int tamaño = colaPedidos.size();
+
+    // Buscar primer cliente VIP
+    for (int i = 0; i < tamaño; i++) {
+        Pedido p = (Pedido) colaPedidos.poll();
+
+        if (p.getCliente().esVip() && vip == null) {
+            vip = p; // ESTE se atiende primero
+        } else {
+            aux.add(p);
         }
-        return null;
     }
+
+    // Restaurar la cola sin el VIP
+    while (aux.size() > 0) {
+        colaPedidos.add(aux.poll());
+    }
+
+    // Si había VIP → se atiende
+    if (vip != null) {
+        return vip;
+    }
+
+    // Si no hay VIP → comportamiento normal FIFO
+    return (Pedido) colaPedidos.poll();
+}
 
     public boolean hayPedidos() {
         return colaPedidos.size() > 0;

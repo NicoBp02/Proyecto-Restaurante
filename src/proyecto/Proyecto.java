@@ -27,10 +27,12 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
                     String nombreEmp = Input.next("Empleado: ");
                     Empleado emp = new Empleado(nombreEmp);
                     // Se crean los datos del cliente
-                    String nombre = Input.next("Nombre del cliente: ");
-                    String telefono = Input.next("Telefono: ");
-
-                    Cliente cliente = new Cliente(nombre, telefono);
+                   
+String nombre = Input.next("Nombre del cliente: ");
+String telefono = Input.next("Telefono: ");
+String vipStr = Input.next("Es cliente VIP? (si/no): ");
+boolean vip = vipStr.equalsIgnoreCase("si");
+Cliente cliente = new Cliente(nombre, telefono, vip);
      // Se crea el pedido con cliente y empleado
                     int idPedido = Input.nextInt("ID del pedido: ");
                     Pedido pedido = new Pedido(idPedido, cliente, emp);
@@ -121,13 +123,20 @@ Restaurante restaurante = new Restaurante("Mi Restaurante");
     int idBuscar = Input.nextInt("Ingrese ID del pedido: ");
     Pedido encontrado = restaurante.buscarPedido(idBuscar);
                         System.out.println("------------------------");
-    if (encontrado != null) {
-        System.out.println("Pedido encontrado:");
-        System.out.println("Cliente: " + encontrado.getCliente().getNombre());
-        System.out.println("Cantidad productos: " + encontrado.getCantidadProductos());
+   if (encontrado != null) {
+    System.out.println("Pedido encontrado:");
+    System.out.println("Cliente: " + encontrado.getCliente().getNombre());
+    System.out.println("Cantidad productos: " + encontrado.getCantidadProductos());
+
+    if (encontrado.getCliente().esVip()) {
+        System.out.println("Tipo: Cliente VIP");
     } else {
-        System.out.println("Pedido no encontrado");
+        System.out.println("Tipo: Cliente normal");
     }
+
+} else {
+    System.out.println("Pedido no encontrado");
+}
     break;
                     
     case 5: //priorizar y atender pedidos especificos 
